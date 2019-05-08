@@ -4,9 +4,11 @@
     "orchestratorProfile": {
       "orchestratorType": "Kubernetes",
       "orchestratorRelease": "${k8s_orchestrator_release}",
-       "orchestratorVersion": "${k8s_orchestrator_version}",
+      "orchestratorVersion": "${k8s_orchestrator_version}",
       "kubernetesConfig": {
-        "useManagedIdentity": true
+        "useManagedIdentity": true,
+        "networkPlugin": "kubenet",
+        "clusterSubnet": "${k8s_kubenet_cluster_subnet}"
       }
     },
     "masterProfile": {

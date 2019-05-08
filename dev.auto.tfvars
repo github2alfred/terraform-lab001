@@ -1,5 +1,4 @@
 resource_groups {
-    "aks"             = "AKS-CLUSTER"
     "networking"      = "AKS-CLUSTER-NETWORKING"
     "security"        = "AKS-CLUSTER-SECURITY"
 }
@@ -34,4 +33,8 @@ dns_zone {
         name        = "aks.internal"
         zone_type   = "Private"
     }
+}
+
+aks_map {
+    resource_group_name     = "AKS-CLUSTER"
 }

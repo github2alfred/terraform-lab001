@@ -1,5 +1,5 @@
 data "template_file" "k8s" {
-  template = "${file("template/k8s_vmss.tpl")}"
+  template = "${file("modules/aks_engine/template/k8s_vmss.tpl")}"
 
   vars {
     k8s_orchestrator_release      = "1.14"
@@ -11,8 +11,9 @@ data "template_file" "k8s" {
     k8s_agent_pool_name           = "microservice"
     vnet_cidr                     = "10.30.0.0/16"
     first_master_ip               = "${cidrhost("10.30.0.0/16", 4)}"
-    vnet_id_mgmt                  = "${module.vnet_and_subnets.subnet_map["k8s-master"]}"
-    vnet_id_pool1                 = "${module.vnet_and_subnets.subnet_map["k8s-pool1"]}"
+    vnet_id_mgmt                  = "${var.subnet_map["k8s-master"]}"
+    vnet_id_pool1                 = "${var.subnet_map["k8s-pool1"]}"
+    k8s_kubenet_cluster_subnet    = "192.168.0.0/16"
     # k8s_public_key_openssh        = "${tls_private_key.aks.public_key_openssh}"
   }
 }
@@ -20,7 +21,7 @@ data "template_file" "k8s" {
 resource "null_resource" "k8s_aks_engine_template" {
 
   triggers = {
-    args = "${file("template/k8s_vmss.tpl")}"
+    args = "${file("modules/aks_engine/template/k8s_vmss.tpl")}"
   }
 
   provisioner "local-exec" {

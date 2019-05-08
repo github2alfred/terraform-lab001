@@ -17,3 +17,7 @@ variable "subnets" {
 variable "vnet" {
     type = "map"
 }
+
+variable "aks_map" {
+    type = "map"
+}

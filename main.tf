@@ -1,7 +1,5 @@
 locals {
     prefix = "${random_string.prefix.result}-"
-    # must start with a letter
-    dns_suffix = "a${random_string.dns_suffix.result}"
 }
 
 resource "random_string" "prefix" {
@@ -10,7 +8,7 @@ resource "random_string" "prefix" {
     special = false
 }
 
-# Create resource groups
+# Create resource groups (except for AKS_Engine as it needs its own lifecycle due to the external use of aks-engine)
 module "resource_group" {
     source                  = "git://github.com/LaurentLesle/azure_terraform_blueprint_modules_resource_group.git?ref=v1.0"
   
@@ -31,16 +29,14 @@ module "vnet_and_subnets" {
     dns_zone                = "${var.dns_zone["internal"]}"
 }
 
+module "aks_engine" {
+    source                  = "modules/aks_engine"
 
-resource "tls_private_key" "aks" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
+    prefix                  = "${local.prefix}"
+    location                = "${var.location_map["region1"]}"
+    subnet_map              = "${module.vnet_and_subnets.subnet_map}"
+    aks_map                 = "${var.aks_map}"
 }
 
-resource "random_string" "dns_suffix" {
-    length  = 31
-    upper   = false
-    special = false
-}
 
 
