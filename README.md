@@ -9,6 +9,8 @@ Install aks-engine, kubectl, terraform
 ```
 terraform init
 
+mkdir _run
+
 terraform plan
 
 terraform apply
@@ -24,4 +26,9 @@ export KUBECONFIG=~/git/github.com/laurentlesle/azure_terraform_blueprint_aks_en
 kubectl cluster-info
 
 kubectl get nodes -o wide
+```
+
+## Deploy a pod and connect to it
+```
+kubectl run busybox --generator=run-pod/v1 --image=busybox -it -l agentpool=microservice 
 ```
