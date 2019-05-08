@@ -1,7 +1,20 @@
 # Demonstrate AKS-Engine and Terraform
 
-## Generate the AKS template
+## pre-requisites
 
 ```
-aks-engine generate ./template/k8s_vmss.tpl
+Install aks-engine, kubectl, terraform
+```
+## Deploy
+```
+terraform init
+
+terraform plan
+
+terraform apply
+```
+
+## Set the kubeconfig
+```
+export KUBECONFIG=~/git/github.com/laurentlesle/azure_terraform_blueprint_aks_engine/_output/aeryfbls6q8jkvfmtoxk5u4pnbv372zo/kubeconfig/kubeconfig.southeastasia.json
 ```
