@@ -12,6 +12,7 @@
     "masterProfile": {
       "count": 1,
       "dnsPrefix": "${k8s_dns_prefix}",
+      "availabilityProfile": "VirtualMachineScaleSets",
       "vmSize": "${k8s_master_family_type}"
     },
     "agentPoolProfiles": [
