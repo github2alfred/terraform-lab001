@@ -16,9 +16,10 @@ terraform plan
 terraform apply
 ```
 
-## Set the kubeconfig
+## Set the kubeconfig 
 ```
-export KUBECONFIG=~/git/github.com/laurentlesle/azure_terraform_blueprint_aks_engine/_output/aeryfbls6q8jkvfmtoxk5u4pnbv372zo/kubeconfig/kubeconfig.southeastasia.json
+# adjust the region and the dns prefix you deployed the cluster
+export KUBECONFIG=./_output/[dns_prefix]]/kubeconfig/kubeconfig.[region].json
 ```
 
 ## Test the cluster is working
