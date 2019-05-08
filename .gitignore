@@ -1,2 +1,7 @@
 **/_output
+**/_run
 **/translations
+**/.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.tfstate.lock.info

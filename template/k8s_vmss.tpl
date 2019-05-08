@@ -3,28 +3,28 @@
   "properties": {
     "orchestratorProfile": {
       "orchestratorType": "Kubernetes",
-      "orchestratorRelease": "1.14",
-       "orchestratorVersion": "1.14.0",
+      "orchestratorRelease": "${k8s_orchestrator_release}",
+       "orchestratorVersion": "${k8s_orchestrator_version}",
       "kubernetesConfig": {
         "useManagedIdentity": true
       }
     },
     "masterProfile": {
       "count": 1,
-      "dnsPrefix": "a323232",
-      "vmSize": "Standard_D2s_v3"
+      "dnsPrefix": "${k8s_dns_prefix}",
+      "vmSize": "${k8s_master_family_type}"
     },
     "agentPoolProfiles": [
       {
-        "name": "agentpool1",
-        "count": 3,
-        "vmSize": "Standard_D2s_v3",
+        "name": "${k8s_agent_pool_name}",
+        "count": 1,
+        "vmSize": "${k8s_agentpool_family_type}",
         "availabilityProfile": "VirtualMachineScaleSets",
         "storageProfile": "ManagedDisks"
       }
     ],
     "linuxProfile": {
-      "adminUsername": "aksadmin",
+      "adminUsername": "${k8s_admin_username}",
       "ssh": {
         "publicKeys": [
           {
