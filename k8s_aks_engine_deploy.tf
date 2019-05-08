@@ -19,6 +19,6 @@ resource "null_resource" "k8s_aks_engine_generate" {
 locals {
   args = [
     "${local.dns_suffix}",
-    "${azurerm_resource_group.rg.name}"
+    "${module.resource_group.names["aks"]}"
   ]
 }

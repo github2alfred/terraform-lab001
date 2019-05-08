@@ -12,8 +12,10 @@
     "masterProfile": {
       "count": 1,
       "dnsPrefix": "${k8s_dns_prefix}",
-      "availabilityProfile": "VirtualMachineScaleSets",
-      "vmSize": "${k8s_master_family_type}"
+      "vmSize": "${k8s_master_family_type}",
+      "vnetCidr": "${vnet_cidr}",
+      "FirstConsecutiveStaticIP": "${first_master_ip}",
+      "vnetSubnetId": "${vnet_id_mgmt}"
     },
     "agentPoolProfiles": [
       {
@@ -21,7 +23,8 @@
         "count": 1,
         "vmSize": "${k8s_agentpool_family_type}",
         "availabilityProfile": "VirtualMachineScaleSets",
-        "storageProfile": "ManagedDisks"
+        "storageProfile": "ManagedDisks",
+        "vnetSubnetId": "${vnet_id_pool1}"
       }
     ],
     "linuxProfile": {
