@@ -1,9 +1,19 @@
 # Demonstrate AKS-Engine and Terraform
 
-## pre-requisites
+This blueprint is developed for educational purposes.
+
+## Pre-requisites
 
 ```
 Install aks-engine, kubectl, terraform
+
+This blueprint must be running in one of the following environments:
+    Linux (Centos),
+    Windows Linux Subsystem (tested on Ubuntu),
+    MacOS,
+    Azure BASH console
+
+It is not working on Windows command lines or Powershell
 ```
 ## Deploy
 ```
@@ -18,8 +28,8 @@ terraform apply
 
 ## Set the kubeconfig 
 ```
-# adjust the region and the dns prefix you deployed the cluster
-export KUBECONFIG=./_output/[dns_prefix]]/kubeconfig/kubeconfig.[region].json
+# adjust the region and the cluster dns prefix you have deployed part of the terraform apply step
+export KUBECONFIG=./_output/[cluster_dns_prefix]]/kubeconfig/kubeconfig.[region].json
 ```
 
 ## Test the cluster is working
